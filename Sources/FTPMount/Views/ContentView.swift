@@ -63,13 +63,13 @@ struct ContentView: View {
         } message: {
             Text(bookmarkStore.lastError ?? "")
         }
-        .onReceive(NotificationCenter.default.publisher(for: .newFreeTPBookmark)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: .newFTPMountBookmark)) { _ in
             addBookmark()
         }
-        .onReceive(NotificationCenter.default.publisher(for: .showFreeTPHelp)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: .showFTPMountHelp)) { _ in
             showingHelp = true
         }
-        .onReceive(NotificationCenter.default.publisher(for: .showFreeTPSetup)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: .showFTPMountSetup)) { _ in
             showingSetup = true
         }
         .onAppear {

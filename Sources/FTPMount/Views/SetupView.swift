@@ -41,7 +41,7 @@ struct SetupView: View {
                     Text("• Connect checks the server login before creating a Finder mount.")
                     Text("• Choose SFTP where your hosting provider supports SSH. Plain FTP is not encrypted.")
                     Button("Open FTP Mount Help") {
-                        NotificationCenter.default.post(name: .showFreeTPHelp, object: nil)
+                        NotificationCenter.default.post(name: .showFTPMountHelp, object: nil)
                     }
                     .padding(.top, 2)
                 }

@@ -54,7 +54,7 @@ final class BookmarkStore: ObservableObject {
         do {
             guard fileManager.fileExists(atPath: storageURL.path) else { return }
             let data = try Data(contentsOf: storageURL)
-            bookmarks = try JSONDecoder.freeTP.decode([Bookmark].self, from: data)
+            bookmarks = try JSONDecoder.ftpMount.decode([Bookmark].self, from: data)
         } catch {
             lastError = "Could not load bookmarks: \(error.localizedDescription)"
         }
@@ -68,14 +68,14 @@ final class BookmarkStore: ObservableObject {
     private func persistThrowing() throws {
         let directory = storageURL.deletingLastPathComponent()
         try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
-        let data = try JSONEncoder.freeTP.encode(bookmarks)
+        let data = try JSONEncoder.ftpMount.encode(bookmarks)
         try data.write(to: storageURL, options: [.atomic, .completeFileProtection])
         try fileManager.setAttributes([.posixPermissions: 0o600], ofItemAtPath: storageURL.path)
     }
 }
 
 private extension JSONEncoder {
-    static var freeTP: JSONEncoder {
+    static var ftpMount: JSONEncoder {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
@@ -84,7 +84,7 @@ private extension JSONEncoder {
 }
 
 private extension JSONDecoder {
-    static var freeTP: JSONDecoder {
+    static var ftpMount: JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         return decoder

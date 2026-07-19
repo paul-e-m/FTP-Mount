@@ -45,7 +45,7 @@ enum DependencyInstaller {
             throw DependencyInstallerError.downloadFailed
         }
         let temporaryDirectory = FileManager.default.temporaryDirectory
-            .appendingPathComponent("FreeTP-rclone-\(UUID().uuidString)", isDirectory: true)
+            .appendingPathComponent("FTP-Mount-rclone-\(UUID().uuidString)", isDirectory: true)
         defer { try? FileManager.default.removeItem(at: temporaryDirectory) }
 
         do {

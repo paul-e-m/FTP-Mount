@@ -2,7 +2,7 @@ import AppKit
 import SwiftUI
 
 @main
-struct FreeTPApp: App {
+struct FTPMountApp: App {
     @StateObject private var bookmarkStore = BookmarkStore()
     @StateObject private var mountManager = MountManager()
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
@@ -19,17 +19,17 @@ struct FreeTPApp: App {
         .commands {
             CommandGroup(replacing: .newItem) {
                 Button("New Connection") {
-                    NotificationCenter.default.post(name: .newFreeTPBookmark, object: nil)
+                    NotificationCenter.default.post(name: .newFTPMountBookmark, object: nil)
                 }
                 .keyboardShortcut("n")
             }
             CommandGroup(replacing: .help) {
                 Button("FTP Mount Help") {
-                    NotificationCenter.default.post(name: .showFreeTPHelp, object: nil)
+                    NotificationCenter.default.post(name: .showFTPMountHelp, object: nil)
                 }
                 .keyboardShortcut("?", modifiers: .command)
                 Button("Check Requirements") {
-                    NotificationCenter.default.post(name: .showFreeTPSetup, object: nil)
+                    NotificationCenter.default.post(name: .showFTPMountSetup, object: nil)
                 }
             }
         }
@@ -53,7 +53,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension Notification.Name {
-    static let newFreeTPBookmark = Notification.Name("FreeTP.newBookmark")
-    static let showFreeTPHelp = Notification.Name("FreeTP.showHelp")
-    static let showFreeTPSetup = Notification.Name("FreeTP.showSetup")
+    static let newFTPMountBookmark = Notification.Name("FTPMount.newBookmark")
+    static let showFTPMountHelp = Notification.Name("FTPMount.showHelp")
+    static let showFTPMountSetup = Notification.Name("FTPMount.showSetup")
 }

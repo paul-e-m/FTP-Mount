@@ -5,12 +5,12 @@ let package = Package(
     name: "FTPMount",
     platforms: [.macOS(.v13)],
     products: [
-        .executable(name: "FTPMount", targets: ["FreeTP"])
+        .executable(name: "FTPMount", targets: ["FTPMount"])
     ],
     targets: [
         .executableTarget(
-            name: "FreeTP",
-            path: "Sources/FreeTP",
+            name: "FTPMount",
+            path: "Sources/FTPMount",
             linkerSettings: [
                 .linkedFramework("Security"),
                 .linkedFramework("AppKit")

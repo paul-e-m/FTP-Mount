@@ -301,7 +301,7 @@ final class MountManager: ObservableObject {
 
     private func remoteName(for bookmark: Bookmark) -> String {
         let root = bookmark.normalizedRoot
-        return root.isEmpty ? "freetp:" : "freetp:\(root)"
+        return root.isEmpty ? "ftpmount:" : "ftpmount:\(root)"
     }
 
     private func writeTemporaryConfig(
@@ -318,7 +318,7 @@ final class MountManager: ObservableObject {
             )
             let url = directory.appendingPathComponent("rclone.conf")
             var lines = [
-                "[freetp]",
+                "[ftpmount]",
                 "type = \(bookmark.transferProtocol.rcloneType)",
                 "user = \(safeConfigValue(bookmark.username))"
             ]
